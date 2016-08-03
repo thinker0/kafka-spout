@@ -12,7 +12,7 @@
 
     <groupId>nl.minvenj.nfi.storm</groupId>
     <artifactId>kafka-spout</artifactId>
-    <version>0.3</version>
+    <version>0.3.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Storm spout emitting messages from a Kafka topic</description>
@@ -53,13 +53,13 @@
         <mockito.version>1.10.19</mockito.version>
         <slf4j.version>1.7.12</slf4j.version>
         <source.plugin.version>2.4</source.plugin.version>
-        <storm.version>0.9.5</storm.version>
+        <storm.version>0.14.1</storm.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.storm</groupId>
-            <artifactId>storm-core</artifactId>
+            <groupId>com.twitter.heron</groupId>
+            <artifactId>heron-storm</artifactId>
             <version>${storm.version}</version>
             <scope>provided</scope>
             <exclusions>
@@ -75,7 +75,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka_2.10</artifactId>
+            <artifactId>kafka_2.11</artifactId>
             <version>${kafka.version}</version>
             <exclusions>
                 <exclusion>

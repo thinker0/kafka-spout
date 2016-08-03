@@ -96,8 +96,8 @@ public class ConfigUtilsTest {
     @Test
     public void testCreateKafkaConfigZookeeperOverride() {
         final Map<String, Object> stormConfig = new HashMap<String, Object>() {{
-            put(Config.STORM_ZOOKEEPER_SERVERS, Arrays.asList("non-existent.host"));
-            put(Config.STORM_ZOOKEEPER_PORT, 2181);
+            put("storm.zookeeper.servers", Arrays.asList("non-existent.host"));
+            put("storm.zookeeper.port", 2181);
             put("kafka.consumer.timeout.ms", "100");
         }};
 
@@ -218,8 +218,8 @@ public class ConfigUtilsTest {
     @Test
     public void testGetStormZookeepers() {
         final Map<String, Object> stormConfig = new HashMap<String, Object>() {{
-            put(Config.STORM_ZOOKEEPER_SERVERS, Arrays.asList("non-existent.host", "zookeeper.example.net"));
-            put(Config.STORM_ZOOKEEPER_PORT, 1234);
+            put("storm.zookeeper.servers", Arrays.asList("non-existent.host", "zookeeper.example.net"));
+            put("storm.zookeeper.port", 1234);
         }};
 
         // result should be "<server1>:<port>,<server2>:<port>"
@@ -233,13 +233,13 @@ public class ConfigUtilsTest {
     public void testGetStormZookeepersFail() {
         // port is not a number
         String zookeepers = getStormZookeepers(new HashMap<String, Object>() {{
-            put(Config.STORM_ZOOKEEPER_SERVERS, Arrays.asList("non-existent.host", "zookeeper.example.net"));
-            put(Config.STORM_ZOOKEEPER_PORT, "not a number");
+            put("storm.zookeeper.servers", Arrays.asList("non-existent.host", "zookeeper.example.net"));
+            put("storm.zookeeper.port", "not a number");
         }});
         assertNull(zookeepers);
 
         // servers is missing
-        zookeepers = getStormZookeepers(Collections.singletonMap(Config.STORM_ZOOKEEPER_PORT, (Object) "1234"));
+        zookeepers = getStormZookeepers(Collections.singletonMap("storm.zookeeper.port", (Object) "1234"));
         assertNull(zookeepers);
 
         // no configuration keys

@@ -40,7 +40,7 @@ import backtype.storm.spout.RawScheme;
 import backtype.storm.spout.Scheme;
 import backtype.storm.spout.SpoutOutputCollector;
 import backtype.storm.task.TopologyContext;
-import backtype.storm.topology.IRichSpout;
+import backtype.storm.topology.base.BaseRichSpout;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerConfig;
@@ -76,8 +76,8 @@ import nl.minvenj.nfi.storm.kafka.util.KafkaMessageId;
  *
  * @author Netherlands Forensics Institute
  */
-public class KafkaSpout implements IRichSpout {
-    private static final long serialVersionUID = -1L;
+public class KafkaSpout extends BaseRichSpout {
+    private static final long serialVersionUID = 1853489631258274479L;
     private static final Logger LOG = LoggerFactory.getLogger(KafkaSpout.class);
     protected final Scheme _serializationScheme;
     /**

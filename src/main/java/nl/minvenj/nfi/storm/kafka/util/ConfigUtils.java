@@ -186,15 +186,15 @@ public class ConfigUtils {
 
     /**
      * Creates a zookeeper connect string usable for the kafka configuration property {@code "zookeeper.connect"} from
-     * storm's configuration map by looking up the {@link backtype.storm.Config#STORM_ZOOKEEPER_SERVERS} and
-     * {@link backtype.storm.Config#STORM_ZOOKEEPER_PORT} values. Returns null when this procedure fails.
+     * storm's configuration map by looking up the {@link backtype.storm.Config} and
+     * {@link backtype.storm.Config} values. Returns null when this procedure fails.
      *
      * @param stormConfig Storm's configuration map.
      * @return A zookeeper connect string if it can be created from storm's config or null.
      */
     public static String getStormZookeepers(final Map<String, Object> stormConfig) {
-        final Object stormZookeepers = stormConfig.get(Config.STORM_ZOOKEEPER_SERVERS);
-        final Object stormZookeepersPort = stormConfig.get(Config.STORM_ZOOKEEPER_PORT);
+        final Object stormZookeepers = stormConfig.get("storm.zookeeper.servers"); // TODO Remove
+        final Object stormZookeepersPort = stormConfig.get("storm.zookeeper.port"); // TODO Remove
         if (stormZookeepers instanceof List && stormZookeepersPort instanceof Number) {
             // join the servers and the port together to a single zookeeper connection string for kafka
             final StringBuilder zookeepers = new StringBuilder();
